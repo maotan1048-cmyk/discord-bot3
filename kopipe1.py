@@ -4,9 +4,8 @@ import discord
 from discord.ext import commands
 
 intents = discord.Intents.default()
-intents.message_content = True  # メッセージ内容を扱うなら必須
+intents.message_content = True 
 
-# 接頭辞なしで on_message 方式にするなら commands.Bot で prefix="" でもOK
 bot = commands.Bot(command_prefix="", intents=intents)
 
 @bot.event
