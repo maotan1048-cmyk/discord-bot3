@@ -1,7 +1,20 @@
 import os
 import random
+import threading
+from flask import Flask
 import discord
 from discord.ext import commands
+
+# --- Flask サーバー設定（Renderで常時稼働させる用） ---
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is alive!"  # UptimeRobotがこのURLを監視する
+
+def run_web():
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
 intents = discord.Intents.default()
 intents.message_content = True 
@@ -44,3 +57,7 @@ if not TOKEN:
     raise SystemExit("TOKEN environment variable not set")
 
 bot.run(TOKEN)
+
+if __name__ == "__main__":
+    threading.Thread(target=run_web).start()
+    run_bot()
