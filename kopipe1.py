@@ -56,7 +56,7 @@ def run_bot():
     TOKEN = os.getenv("TOKEN")
     if not TOKEN:
         raise SystemExit("TOKEN environment variable not set")
-    (bot.run(TOKEN)
+    bot.run(TOKEN)
 
 if __name__ == "__main__":
     threading.Thread(target=run_web).start()
