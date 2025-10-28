@@ -52,11 +52,11 @@ async def on_message(message):
     await message.channel.send(random.choice(replies))
 
 # トークンを環境変数から取得
-TOKEN = os.getenv("TOKEN")
-if not TOKEN:
-    raise SystemExit("TOKEN environment variable not set")
-
-bot.run(TOKEN)
+def run_bot():
+    TOKEN = os.getenv("TOKEN")
+    if not TOKEN:
+        raise SystemExit("TOKEN environment variable not set")
+    (bot.run(TOKEN)
 
 if __name__ == "__main__":
     threading.Thread(target=run_web).start()
